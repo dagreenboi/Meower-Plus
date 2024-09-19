@@ -134,7 +134,7 @@
 		    	setTimeout(() => (popupDebounce = false), 150);
 	        }
         }
-		size={1}
+		size={0.8}
 		alt="Open/close more options"
 		icon={$user.name ? $user.pfp_data : -3}
         data={$user}
