@@ -34,9 +34,9 @@
 			{alt}
 			title={alt}
 			src={
-                data.avatar
+                data.?avatar
                 ?
-                "https://uploads.meower.org/icons/" + data.avatar
+                "https://uploads.meower.org/icons/" + data.?avatar
                 :
                 icons[
 				`../assets/avatars/icon_${
