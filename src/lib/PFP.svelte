@@ -5,6 +5,7 @@
 	export let online = false;
 	export let size = 1;
 	export let raw = false;
+    export let data;
 
 	import errorIcon from "../assets/avatars/icon_err.svg";
 
@@ -32,7 +33,7 @@
 		<img
 			{alt}
 			title={alt}
-			src={icons[
+			src={"https://uploads.meower.org/icons/" data.avatar || icons[
 				`../assets/avatars/icon_${
 					id === -1
 						? 21
