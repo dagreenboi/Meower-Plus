@@ -26,12 +26,13 @@
 	$: setId(icon);
 </script>
 
-<span class:pfp-container={!raw} style:--size={size}>
+<span class:pfp-container={!raw} style:--size={size} style:--avatar-color={data.avatar_color ? "#" + data.avatar_color : "#f00"}>
 	{#if online && !raw}
 		<span class="online" />
 	{/if}
 	<span class:pfp={!raw} class:raw-pfp={raw}>
-		<img
+		<img 
+            style="border-radius: 100%;"
 			{alt}
 			title={alt}
 			src={
@@ -73,10 +74,9 @@
 		height: calc(var(--size) * 3.75em);
 		box-sizing: border-box;
 
-		background-color: var(--pfp-bg);
-		border: solid 1.5px var(--pfp-outline);
-		border-bottom-width: 5px;
-		border-radius: calc(var(--size) * 1.25em);
+		background-color: var(--avatar-color);
+		border: solid 3px var(--avatar-color);
+		border-radius: 100%;
 
 		display: flex;
 		align-items: center;
