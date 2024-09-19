@@ -518,6 +518,7 @@
 						: profile.pfp_data}
 					alt="{post.user}'s profile picture"
 					online={$ulist.includes(post.user)}
+                    data={profile}
 				/>
 			{:catch}
 				<PFP
