@@ -30,6 +30,7 @@
 
 	let popupShown = false;
 	let popupDebounce = false;
+    $: size = popupDebounce ? 0.77 : 0.7;
 </script>
 
 <svelte:body on:click={() => (popupShown = false)} />
@@ -134,7 +135,7 @@
 		    	setTimeout(() => (popupDebounce = false), 150);
 	        }
         }
-		size={0.8}
+		size={size}
 		alt="Open/close more options"
 		icon={$user.name ? $user.pfp_data : -3}
         data={$user}
@@ -294,12 +295,6 @@
 	.toggle-popup {
 		padding: 0.1em;
 		overflow: hidden;
-	}
-
-	:global(main.input-hover) .toggle-popup:hover:not(:active),
-	:global(main.input-touch) .toggle-popup:active,
-	.toggle-popup:focus-visible {
-		transform: scale(1.1);
 	}
 
 	.popup {
