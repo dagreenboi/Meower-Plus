@@ -33,7 +33,12 @@
 		<img
 			{alt}
 			title={alt}
-			src={"https://uploads.meower.org/icons/" data.avatar || icons[
+			src={
+                data.avatar
+                ?
+                "https://uploads.meower.org/icons/" + data.avatar
+                :
+                icons[
 				`../assets/avatars/icon_${
 					id === -1
 						? 21
