@@ -85,8 +85,8 @@
 	}
 
     .pfp-img {
-		width: calc(var(--size) * 3.75em);
-		height: calc(var(--size) * 3.75em);
+		width: 100%;
+        height: 100%;
         border-radius: 100%;
     }
 
