@@ -136,10 +136,10 @@
 		}}
 	>
 		<PFP
-			raw={true}
 			size={1}
 			alt="Open/close more options"
 			icon={$user.name ? $user.pfp_data : -3}
+            data={$user}
 		/>
 	</button>
 </div>
