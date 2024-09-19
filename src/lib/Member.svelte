@@ -36,6 +36,7 @@
 				alt="{member}'s profile picture"
 				online={$ulist.includes(member)}
 				size={0.5}
+                data={(await loadProfile(member))}
 			/>
 		</div>
 		<p class="member-name">{member}</p>
