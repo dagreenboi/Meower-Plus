@@ -27,12 +27,9 @@
 </script>
 
 <span class:pfp-container={!raw} style:--size={size} style:--avatar-color={data.avatar_color ? "#" + data.avatar_color : "#f00"}>
-	{#if online && !raw}
-		<span class="online" />
-	{/if}
 	<span class:pfp={!raw} class:raw-pfp={raw}>
 		<img 
-            style="border-radius: 100%;"
+            class="pfp-img"
 			{alt}
 			title={alt}
 			src={
@@ -86,6 +83,12 @@
 		/* Always make fallback text visible */
 		color: black;
 	}
+
+    .pfp-img {
+		width: calc(var(--size) * 3.75em);
+		height: calc(var(--size) * 3.75em);
+        border-radius: 100%;
+    }
 
 	.loading {
 		animation: spin 0.5s linear infinite;
