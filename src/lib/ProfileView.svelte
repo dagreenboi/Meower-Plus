@@ -227,6 +227,7 @@
 								: data.pfp_data}
 							alt="{data._id}'s profile picture"
 							size={small ? 1 : 1.4}
+                            data={data}
 						/>
 					</button>
 				{:else}
