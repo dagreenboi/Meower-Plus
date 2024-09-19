@@ -11,6 +11,7 @@
 	export let owner = false;
 
 	let pfp = 0;
+    let profile = (await loadProfile(member));
 
 	let error;
 
@@ -36,7 +37,7 @@
 				alt="{member}'s profile picture"
 				online={$ulist.includes(member)}
 				size={0.5}
-                data={(await loadProfile(member))}
+                data={profile}
 			/>
 		</div>
 		<p class="member-name">{member}</p>
