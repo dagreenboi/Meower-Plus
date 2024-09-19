@@ -11,7 +11,7 @@
 	export let owner = false;
 
 	let pfp = 0;
-    let profile = (await loadProfile(member));
+    let profile;
 
 	let error;
 
@@ -25,6 +25,7 @@
 			error = e;
 			pfp = -2;
 		}
+        profile = (await loadProfile(member));
 	}
 	onMount(initPostUser);
 </script>
