@@ -126,22 +126,20 @@
 		</button>
 	{/if}
 	<div class="padding" />
-	<button
-		class="toggle-popup round"
-		on:click={() => {
-			if (popupDebounce) return;
-			popupShown = !popupShown;
-			popupDebounce = true;
-			setTimeout(() => (popupDebounce = false), 150);
-		}}
-	>
-		<PFP
-			size={1}
-			alt="Open/close more options"
-			icon={$user.name ? $user.pfp_data : -3}
-            data={$user}
-		/>
-	</button>
+	<PFP
+        on:click={() => {
+		    if (popupDebounce) return;
+			    popupShown = !popupShown;
+		    	popupDebounce = true;
+		    	setTimeout(() => (popupDebounce = false), 150);
+	        }
+        }
+		size={1}
+		alt="Open/close more options"
+		icon={$user.name ? $user.pfp_data : -3}
+        data={$user}
+        class="toggle-popup"
+	/>
 </div>
 {#if popupShown}
 	<!-- svelte-ignore a11y-click-events-have-key-events a11y-no-static-element-interactions -->
@@ -293,17 +291,14 @@
 		gap: 0.25em;
 	}
 
-	button.toggle-popup {
+	.toggle-popup {
 		padding: 0.1em;
-		background-color: var(--pfp-bg) !important;
-		border: solid 1.5px var(--pfp-outline);
-		border-bottom-width: 5px;
 		overflow: hidden;
 	}
 
-	:global(main.input-hover) button.toggle-popup:hover:not(:active),
-	:global(main.input-touch) button.toggle-popup:active,
-	button.toggle-popup:focus-visible {
+	:global(main.input-hover) .toggle-popup:hover:not(:active),
+	:global(main.input-touch) .toggle-popup:active,
+	.toggle-popup:focus-visible {
 		transform: scale(1.1);
 	}
 
