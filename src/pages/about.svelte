@@ -35,7 +35,7 @@
 	<img src={logo} alt="Meower" height="80" />
 </h1>
 <b class="center friendlier">The friendlier social media for everyone.</b>
-<div class="center">Svelte Client, version {version}</div>
+<div class="center">Meower Plus Client, version {version}</div>
 <div class="center links">
 	<a href="https://meower.org" target="_blank" rel="noreferrer">Learn more</a>
 	|
@@ -47,16 +47,16 @@
 </div>
 
 <Container>
-	<h2>The Council</h2>
-	<p>These people have the highest authority of the Meower Plus project.</p>
+	<h2>Meower Plus Contributors</h2>
+	<p>These people are Cuntributors to the Meower Plus Client.</p>
 	<div class="contributors-list">
 		<Contributor username="DaGreenBoi" pfp={26} isMeower={true}>
-			Owner of Meower Plus
+			Creator of Meower Plus
 		</Contributor>
 	</div>
 </Container>
 <Container>
-	<h2>Client Contributors</h2>
+	<h2>Github Contributors</h2>
 	<p>(This list uses GitHub usernames/PFPs and the order is randomized.)</p>
 	{#await fetchContributors()}
 		<Loading />
