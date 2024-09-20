@@ -506,15 +506,8 @@
 				/>
 			{:then profile}
 				<PFP
-					icon={noPFP
-						? post.user === "Server"
-							? 102
-							: post.post_origin === "inbox" &&
-							  (post.user === "Announcement" ||
-									post.user === "Notification" ||
-									post.user.startsWith("Notification to"))
-							? 101
-							: -2
+					icon={post.user === "Server"
+					    ? -4
 						: profile.pfp_data}
 					alt="{post.user}'s profile picture"
 					online={$ulist.includes(post.user)}
