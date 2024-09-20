@@ -330,6 +330,54 @@
 		post.user === "Announcement" ||
 		post.user === "Server" ||
 		webhook;
+
+    const roarer = /@([\w-]+)\s+"([^"]*)"\s+\(([^)]+)\)/g;
+    const bettermeower = /@([\w-]+)\[([a-zA-Z0-9]+)\]/g;
+
+
+    let matches1 = [...post.content.matchAll(roarer)];
+    let matches2 = [...post.content.matchAll(bettermeower)];
+
+    let allMatches = matches1.concat(matches2);
+    const postsreplied = [];
+
+    if (allMatches.length > 0) {
+        const replyIds = allMatches.map(match => match[3] || match[2]);
+        const roarRegex = /^@[\w-]+ (.+?) \(([^)]+)\)/;
+        replyIds.forEach(id => {
+            let replydata = postCache[postOrigin].find(post => post._id === replyid);
+            if (!replydata) {
+                const replyresp = await fetch(`https://api.meower.org/posts?id=${replyid}`, {
+                    headers: { token: localStorage.getItem("token") }
+                });
+                if (replyresp.status === 404) {
+                    replydata = { p: "[original message was deleted]" };
+                } else {
+                    replydata = await replyresp.json();
+                }
+            }
+
+            let content;
+            let user;
+
+            if (replydata.p) {
+                content = replydata.p;
+
+                let match = replydata.p.replace(roarRegex, "").trim();
+
+                if (match) {
+                    content = match;
+                }
+            } else if (replydata.attachments) {
+                content = "[Attachment]";
+            } else {
+                content = '';
+            }
+
+            user = replydata.u || '';
+            postsreplied.push({_id: replydata._id || "", p: content, author: {_id: user}});
+	    });
+    }
 </script>
 
 <Container id={post.post_id}>
@@ -647,6 +695,15 @@
 		</div>
 	{:else}
         <div>
+            {#each postsreplied as reply}
+                <div
+                    class="reply-container"
+                    on:click={()=>{gotoRepliedToPost(reply._id)}}
+                >
+                    <p style="font-weight:bold;margin: 10px 0 10px 0;">{reply.author._id}</p>
+                    <p style="margin: 10px 0 10px 0;">{reply.p}</p>
+                </div>
+            {/each}
             {#each post.reply_to as reply}
                 <div
                     class="custom reply-container"
