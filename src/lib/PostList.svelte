@@ -548,7 +548,7 @@
 							}}
 							removePost={() =>
 								(items = items.filter(v => v.id !== post.id))}
-                            gotoRepliedPost={handleReplyLink}
+                            gotoRepliedToPost={handleReplyLink}
 						/>
 					{/if}
 				</div>
