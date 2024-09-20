@@ -164,16 +164,6 @@
 				};
 				return user;
 			}
-			if (post.post_origin === "inbox") {
-				if (post.u === "Server") {
-					post.u = "Announcement";
-				} else {
-					post.u =
-						fetchUrl === "inbox"
-							? "Notification"
-							: `Notification to ${post.u}`;
-				}
-			}
 			return {
 				id: id++,
 				post_id: post._id,
