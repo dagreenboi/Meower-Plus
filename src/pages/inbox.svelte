@@ -22,7 +22,7 @@
 		}}
 		fetchUrl={"inbox"}
 		postOrigin={"inbox"}
-		canPost={true}
+		canPost={false}
 	>
 		<Container slot="error" let:error>
 			Error loading messages. Please try again.
