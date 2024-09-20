@@ -334,7 +334,7 @@
 		webhook;
 </script>
 
-<Container>
+<Container id={post.post_id}>
 	<div class="post-header">
 		{#if buttons}
 			<div class="settings-controls">
