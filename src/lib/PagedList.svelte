@@ -58,7 +58,7 @@
 	export let itemsPerPage = 25;
     export let id = "";
 
-	let id = 0;
+	let pid = 0;
 
 	async function loadPageWithOverflow(page) {
 		pageLoading = true;
@@ -91,9 +91,9 @@
 			items = items.concat(realItems);
 			pagesLoaded = page;
 			return items.map(o => {
-				id++;
+				pid++;
 				return {
-					id,
+					pid,
 					...o,
 				};
 			});
