@@ -102,7 +102,7 @@
 					{/if}
 				</div>
 			</Container>
-		{:else if $user.name === data._id}
+		{:else}
 			<button
 				class="long"
 				title="Change Profile Picture"
