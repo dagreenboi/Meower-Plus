@@ -311,6 +311,19 @@
 
 	let destroy = () => {};
 	onDestroy(() => destroy());
+
+    function handleReplyLink(event) {
+        const postElement = document.getElementById(event.details.id);
+        if (postElement) {
+            const postRect = postElement.getBoundingClientRect();
+            const postPosition = postRect.top - list.top + document.getElementById("app").scrollTop;
+
+            document.getElementById("app").scrollTo({
+                top: postPosition,
+                behavior: "smooth"
+			});
+        }
+    }
 </script>
 
 <div>
@@ -535,6 +548,7 @@
 							}}
 							removePost={() =>
 								(items = items.filter(v => v.id !== post.id))}
+                            on:replylink={handleReplyLink}
 						/>
 					{/if}
 				</div>
