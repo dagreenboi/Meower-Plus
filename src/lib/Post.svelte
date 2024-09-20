@@ -18,6 +18,7 @@
 	import {apiUrl} from "./urls.js";
 	import {shiftHeld} from "../lib/keyDetect.js";
 	import * as modals from "./modals.js";
+    import { darkenColour, lightenColour } from "./color.js";
 
 	import {IMAGE_HOST_WHITELIST} from "./hostWhitelist.js";
 
@@ -644,6 +645,19 @@
 			>
 		</div>
 	{:else}
+        <div>
+            {#each post.reply_to reply}
+                <div
+                    class="custom reply"
+                    style:--reply-accent={darkenColour(reply.author.avatar_color, 3)}
+                    style:--reply-border={lightenColour(reply.author.avatar_color, 3)}
+                    style:--reply-color={lightenColour(reply.author.avatar_color, 1.5)}
+                >
+                    <p style="font-weight:bold;margin: 10px 0 10px 0;">{reply.author._id}</p>
+                    <p style="margin: 10px 0 10px 0;">{reply.p}</p>
+                </div>
+            {/each}
+        </div>
 		<p
 			class="post-content"
 			style="border-left-color: #4b5563; {post.pending
@@ -774,4 +788,30 @@
 	:global(blockquote blockquote) {
 		margin-left: 1em;
 	}
+
+    .reply.custom {
+        background-color: var(--reply-accent);
+        border: 3px solid var(--reply-border);
+        color: var(--reply-color);
+    }
+
+    .reply {
+        font-size: 16px;
+        background-color: #25242e;
+        border: 3px solid #25242e;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 6px;
+        max-height: 100px;
+        overflow-x: auto;
+        overflow-y: visible;
+        margin: 10px 0;
+        display: flex;
+        text-wrap: nowrap;
+        gap: 10px;
+        align-items: center;
+        height: 42px;
+        white-space: nowrap;
+        overflow: hidden;
+    }
 </style>
