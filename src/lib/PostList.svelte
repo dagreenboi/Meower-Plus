@@ -317,7 +317,8 @@
         console.log(postElement)
         if (postElement) {
             const postRect = postElement.getBoundingClientRect();
-            const postPosition = postRect.top - list.top + document.getElementById("app").scrollTop;
+            const listRect = list.getBoundingClientRect();
+            const postPosition = postRect.top - listRect.top + document.getElementById("app").scrollTop;
             console.log(postPosition)
             document.getElementById("app").scrollTo({
                 top: postPosition,
