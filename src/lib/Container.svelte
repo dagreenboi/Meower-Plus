@@ -3,9 +3,10 @@
 -->
 <script>
 	export let warning = false;
+    export let id = "";
 </script>
 
-<div class={warning ? "warning" : ""}><slot /></div>
+<div class={warning ? "warning" : ""} id={id}><slot /></div>
 
 <style>
 	div {
