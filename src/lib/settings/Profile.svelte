@@ -4,18 +4,39 @@
 	import Container from "../Container.svelte";
 	import PFP from "../PFP.svelte";
 
-	import {user} from "../stores.js";
+	import {user, authHeader} from "../stores.js";
 	import {userRestrictions, isRestricted} from "../bitField.js";
 	import {profileCache} from "../loadProfile.js";
-	import {apiUrl, encodeApiURLParams} from "../urls.js";
+	import {apiUrl, encodeApiURLParams, uploadsUrl} from "../urls.js";
 	import * as clm from "../clmanager.js";
 
 	import {params} from "@roxi/routify";
 
-	const PFP_COUNT = 34;
+    let pfpElement;
 
-	const pfps = new Array(PFP_COUNT).fill().map((_, i) => i + 1);
-	let pfpSwitcher = false;
+    function changeProfilePicture() {
+        pfpElement.click();
+    }
+
+    function onPfpChange() {
+        const file = pfpElement.files[0];
+        const formData = new FormData();
+        formData.append("file",file);
+        fetch(`${uploadsUrl}icons`, {
+            method: "POST",
+            headers: {
+                "Authorization": $authHeader.token
+            },
+            body: formData
+		})
+        .then(uploadResponse => uploadResponse.json())
+        .then(uploadData => {
+            const avatarId = uploadData.id;
+            $user.avatar = avatarId;
+            clm.updateProfile({avatar: $user.avatar});
+		})
+        .catch(error => console.error("Error uploading file:",error));
+    }
 
 	async function loadProfile() {
 		let path = `users/${$user.name}`;
@@ -48,68 +69,23 @@
 			<input
 				type="text"
 				class="modal-input white"
-				style="font-style: italic"
+				style="font-style: italic; margin-bottom: 0.6em;"
 				placeholder="Write something..."
 				maxlength="360"
 				disabled={isRestricted(userRestrictions.EDITING_QUOTE)}
 				bind:value={$user.quote}
 				on:change={() => clm.updateProfile({quote: $user.quote})}
 			/>
-		</Container>
-
-		{#if pfpSwitcher}
-			<Container>
-				<h2>Profile Picture</h2>
-				<div id="pfp-list">
-					{#if pfpOverflow && $user.pfp_data < 0}
-						<button
-							on:click={() => (pfpSwitcher = false)}
-							class="pfp selected"
-							><PFP
-								online={false}
-								icon={$user.pfp_data}
-								alt="Profile picture {$user.pfp_data}"
-							/></button
-						>
-					{/if}
-					{#each pfps as pfp}
-						<button
-							on:click={() => {
-								if ($profileCache[$user.name])
-									delete $profileCache[$user.name];
-								clm.updateProfile({pfp_data: pfp});
-								pfpSwitcher = false;
-							}}
-							class="pfp"
-							class:selected={$user.pfp_data === pfp}
-							><PFP
-								online={false}
-								icon={pfp}
-								alt="Profile picture {pfp}"
-							/></button
-						>
-					{/each}
-					{#if pfpOverflow && $user.pfp_data > 0}
-						<button
-							on:click={() => (pfpSwitcher = false)}
-							class="pfp selected"
-							><PFP
-								online={false}
-								icon={$user.pfp_data}
-								alt="Profile picture {$user.pfp_data}"
-							/></button
-						>
-					{/if}
-				</div>
-			</Container>
-		{:else}
-			<button
+            <h3>Profile Picture</h3>
+            <button
 				class="long"
-				title="Change Profile Picture"
-				on:click={() => (pfpSwitcher = true)}
-				>Change Profile Picture</button
+				title="Choose File"
+				on:click={changeProfilePicture}
 			>
-		{/if}
+                Choose File
+            </button>
+            <input type=file hidden bind:this={pfpElement} on:change={onPfpChange} />
+		</Container>
 	{:catch}
 		<ProfileView username={$params.username} />
 	{/await}
@@ -136,14 +112,6 @@
 		margin-bottom: 0.2em;
 	}
 
-	.pfp {
-		padding: 0.2em;
-		margin: 0.2em;
-		border-radius: 1.45em;
-		display: inline-block;
-		background: none;
-		border: none;
-	}
 	:global(main.input-hover) .pfp:hover,
 	:global(main.input-touch) .pfp:active {
 		background-color: var(--orange-light);
@@ -151,12 +119,5 @@
 	/* cst todo: fix shadow appearing when activating then unhovering because i gtg*/
 	:global(:root main.input-hover) .pfp:active {
 		background-color: var(--orange-dark);
-	}
-	:global(main) .pfp.selected {
-		background-color: var(--orange);
-	}
-	#pfp-list {
-		display: flex;
-		flex-wrap: wrap;
 	}
 </style>
