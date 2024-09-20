@@ -45,8 +45,8 @@
 						? "err"
 						: id === -3
 						? "guest"
-                        : data._id === "Server"
-                        ? -4
+                        : id === -4
+                        ? id
 						: id - 1
 				}.svg`
 			] || errorIcon}
