@@ -15,7 +15,7 @@
 </script>
 
 <Modal on:close={modals.closeLastModal}>
-	<h2 slot="header">Login to Meower</h2>
+	<h2 slot="header">Login to Meower+</h2>
 	<div slot="default">
 		<form
 			on:change={() => (error = "")}
