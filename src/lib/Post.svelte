@@ -397,7 +397,7 @@
 							{/if}
 						{/if}
 						<button
-							class="circle reply"
+							class="circle reply-button"
 							on:click={() => {
 								let existingText = input.value.trim();
 
