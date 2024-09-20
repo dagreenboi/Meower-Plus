@@ -90,6 +90,7 @@
 				class="long"
 				title="Choose File"
 				on:click={changeProfilePicture}
+                style="margin-bottom: 0.6em;"
 			>
                 Choose File
             </button>
