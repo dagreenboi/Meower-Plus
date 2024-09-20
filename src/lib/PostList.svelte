@@ -314,10 +314,11 @@
 
     function handleReplyLink(_id) {
         const postElement = document.getElementById(_id);
+        console.log(postElement)
         if (postElement) {
             const postRect = postElement.getBoundingClientRect();
             const postPosition = postRect.top - list.top + document.getElementById("app").scrollTop;
-
+            console.log(postPosition)
             document.getElementById("app").scrollTo({
                 top: postPosition,
                 behavior: "smooth"
