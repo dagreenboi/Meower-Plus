@@ -13,9 +13,14 @@
 	import {params} from "@roxi/routify";
 
     let pfpElement;
+    let profileColorElement;
 
     function changeProfilePicture() {
         pfpElement.click();
+    }
+
+    function changeProfileColor() {
+        profileColorElement.click();
     }
 
     function onPfpChange() {
@@ -36,6 +41,11 @@
             clm.updateProfile({avatar: $user.avatar});
 		})
         .catch(error => console.error("Error uploading file:",error));
+    }
+
+    function onProfileColorChange() {
+        $user.avatar_color = profileColorElement.value.substring(1);
+        clm.updateProfile({avatar_color: $user.avatar_color});
     }
 
 	async function loadProfile() {
@@ -84,6 +94,16 @@
                 Choose File
             </button>
             <input type=file hidden bind:this={pfpElement} on:change={onPfpChange} />
+            <h3>Profile Color</h3>
+            <button
+				class="long"
+				title="Choose Color"
+				on:click={changeProfileColor}
+                style="background: #{$user.avatar_color}; color: #{$user.avatar_color}; user-select: none;"
+			>
+                Choose Color
+            </button>
+            <input type=color hidden bind:this={profileColorElement} on:change={onProfileColorChange} />
 		</Container>
 	{:catch}
 		<ProfileView username={$params.username} />
