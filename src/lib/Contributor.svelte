@@ -1,6 +1,7 @@
 <script>
 	import PFP from "./PFP.svelte";
 	import {goto} from "@roxi/routify";
+	import loadProfile from "./loadProfile.js";
 
 	export let username = "";
 	export let url = "";
@@ -23,7 +24,10 @@
 >
 	{#if isMeower && pfp != null}
 		<div class="contrib-pfp">
-			<PFP icon={Number(pfp)} alt={username} size={3 / 3.75} />
+            {#await loadProfile(username)}
+            {:then data}
+			    <PFP icon={Number(pfp)} alt={username} size={3 / 3.75} {data} />
+            {/await}
 		</div>
 	{:else if pfp}
 		<img class="contrib-pfp" src={pfp} alt={username} />
