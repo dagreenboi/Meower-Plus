@@ -312,8 +312,8 @@
 	let destroy = () => {};
 	onDestroy(() => destroy());
 
-    function handleReplyLink(event) {
-        const postElement = document.getElementById(event.details.id);
+    function handleReplyLink(_id) {
+        const postElement = document.getElementById(_id);
         if (postElement) {
             const postRect = postElement.getBoundingClientRect();
             const postPosition = postRect.top - list.top + document.getElementById("app").scrollTop;
@@ -548,7 +548,7 @@
 							}}
 							removePost={() =>
 								(items = items.filter(v => v.id !== post.id))}
-                            on:replylink={handleReplyLink}
+                            gotoRepliedPost={handleReplyLink}
 						/>
 					{/if}
 				</div>
