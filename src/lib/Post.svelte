@@ -30,9 +30,6 @@
 	import twemoji from "@twemoji/api";
 	import {goto} from "@roxi/routify";
 	import {onMount, tick} from "svelte";
-    import { createEventDispatcher } from 'svelte';
-
-	const dispatch = createEventDispatcher();
 
 	/**
 	 * @type {import('src/lib/types.js').ListPost}
@@ -46,6 +43,7 @@
 	export let error = "";
 	export let retryPost;
 	export let removePost;
+    export let gotoRepliedToPost;
 
 	let bridged = false;
 	let webhook = false;
@@ -655,7 +653,7 @@
                     style:--reply-accent={darkenColour(reply.author.avatar_color, 3)}
                     style:--reply-border={lightenColour(reply.author.avatar_color, 3)}
                     style:--reply-color={lightenColour(reply.author.avatar_color, 1.5)}
-                    on:click={()=>{dispatch("replylink",{id: reply._id});}}
+                    on:click={()=>{gotoRepliedToPost(reply._id)}}
                 >
                     <p style="font-weight:bold;margin: 10px 0 10px 0;">{reply.author._id}</p>
                     <p style="margin: 10px 0 10px 0;">{reply.p}</p>
@@ -793,7 +791,7 @@
 		margin-left: 1em;
 	}
 
-    .reply.custom {
+    .reply-container.custom {
         background-color: var(--reply-accent);
         border: 3px solid var(--reply-border);
         color: var(--reply-color);
