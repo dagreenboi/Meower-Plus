@@ -1,4 +1,4 @@
-function darkenColour(hex, amount) {
+export function darkenColour(hex, amount) {
     hex = hex.replace(/^#/, '');
 
     const bigint = parseInt(hex, 16);
@@ -15,7 +15,7 @@ function darkenColour(hex, amount) {
     return nh;
 }
 
-function lightenColour(hex, amount) {
+export function lightenColour(hex, amount) {
     hex = hex.replace(/^#/, '');
 
     const bigint = parseInt(hex, 16);
