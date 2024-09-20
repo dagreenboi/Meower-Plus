@@ -317,8 +317,8 @@
         console.log(postElement)
         if (postElement) {
             const postRect = postElement.getBoundingClientRect();
-            const listRect = list.getBoundingClientRect();
-            const postPosition = postRect.top - listRect.top + document.getElementById("app").scrollTop;
+            const containerRect = document.getElementById("posts-list").getBoundingClientRect();
+            const postPosition = postRect.top - containerRect.top + document.getElementById("app").scrollTop;
             console.log(postPosition)
             document.getElementById("app").scrollTo({
                 top: postPosition,
@@ -465,7 +465,7 @@
 	{#if postOrigin}
 		<TypingIndicator forPage={postOrigin} />
 	{/if}
-	<PagedList maxItems={100} bind:items {loadPage} bind:this={list}>
+	<PagedList id="posts-list" maxItems={100} bind:items {loadPage} bind:this={list}>
 		<svelte:fragment slot="loaded" let:items={_items}>
 			{#each _items as post (post.id)}
 				<div class="item">
