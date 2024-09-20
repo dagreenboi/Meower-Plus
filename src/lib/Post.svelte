@@ -30,6 +30,9 @@
 	import twemoji from "@twemoji/api";
 	import {goto} from "@roxi/routify";
 	import {onMount, tick} from "svelte";
+    import { createEventDispatcher } from 'svelte';
+
+	const dispatch = createEventDispatcher();
 
 	/**
 	 * @type {import('src/lib/types.js').ListPost}
@@ -397,7 +400,7 @@
 							{/if}
 						{/if}
 						<button
-							class="circle reply-button"
+							class="circle reply"
 							on:click={() => {
 								let existingText = input.value.trim();
 
@@ -648,10 +651,11 @@
         <div>
             {#each post.reply_to as reply}
                 <div
-                    class="custom reply"
+                    class="custom reply-container"
                     style:--reply-accent={darkenColour(reply.author.avatar_color, 3)}
                     style:--reply-border={lightenColour(reply.author.avatar_color, 3)}
                     style:--reply-color={lightenColour(reply.author.avatar_color, 1.5)}
+                    on:click={()=>{dispatch("replylink",{id: reply._id});}}
                 >
                     <p style="font-weight:bold;margin: 10px 0 10px 0;">{reply.author._id}</p>
                     <p style="margin: 10px 0 10px 0;">{reply.p}</p>
@@ -795,7 +799,7 @@
         color: var(--reply-color);
     }
 
-    .reply {
+    .reply-container {
         font-size: 16px;
         background-color: #25242e;
         border: 3px solid #25242e;
