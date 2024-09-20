@@ -26,7 +26,7 @@
 	$: setId(icon);
 </script>
 
-<span on:click class:pfp-container={!raw} style:--size={size} style:--avatar-color={data.avatar_color ? "#" + data.avatar_color : "#f00"}>
+<span on:click class:pfp-container={!raw} style:--size={size} style:--avatar-color={data.avatar_color ? "#" + data.avatar_color : "#ffffff"}>
 	<span class:pfp={!raw} class:raw-pfp={raw}>
 		<img 
             class="pfp-img"
