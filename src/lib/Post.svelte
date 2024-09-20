@@ -646,7 +646,7 @@
 		</div>
 	{:else}
         <div>
-            {#each post.reply_to reply}
+            {#each post.reply_to as reply}
                 <div
                     class="custom reply"
                     style:--reply-accent={darkenColour(reply.author.avatar_color, 3)}
