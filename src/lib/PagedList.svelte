@@ -56,6 +56,7 @@
 	};
 
 	export let itemsPerPage = 25;
+    export let id = "";
 
 	let id = 0;
 
@@ -111,7 +112,7 @@
 	let itemOffset = 0;
 </script>
 
-<div>
+<div id={id}>
 	{#await loadPageWithOverflow(1)}
 		<div class="center loading-start">
 			<Loading />
