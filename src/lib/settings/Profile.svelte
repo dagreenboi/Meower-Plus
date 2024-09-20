@@ -52,7 +52,6 @@
 	let pfpOverflow = false;
 	$: {
 		const pfp = $user.pfp_data;
-		pfpOverflow = pfp < 0 || pfp > PFP_COUNT;
 	}
 </script>
 
