@@ -211,7 +211,7 @@
 			date: Math.floor(new Date().getTime() / 1000),
 			isDeleted: false,
 			pending: true,
-            reply_to: post.reply_to
+            reply_to: []
 		};
 		list.addItem(pendingPost);
 
@@ -295,7 +295,7 @@
 						isDeleted: cmd.val.isDeleted,
 						mod_deleted: cmd.val.mod_deleted,
 						deleted_at: cmd.val.deleted_at,
-                        reply_to: post.reply_to
+                        reply_to: cmd.val.reply_to
 					};
 					list.addItem(post);
 					if (cmd.val.nonce) {
