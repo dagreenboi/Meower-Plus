@@ -712,12 +712,12 @@
                 <div
                     class="custom reply-container"
                     style:--reply-accent={isDark ? darkenColour(reply.author.avatar_color, 3) : lightenColour(reply.author.avatar_color, 2)}
-                    style:--reply-border={isDark ? lightenColour(reply.author.avatar_color, 3) : reply.author.avatar_color}
+                    style:--reply-border={isDark ? lightenColour(reply.author.avatar_color, 3) : "#" + reply.author.avatar_color}
                     style:--reply-color={isDark ? lightenColour(reply.author.avatar_color, 1.5) : darkenColour(reply.author.avatar_color, 2)}
                     on:click={()=>{gotoRepliedToPost(reply._id)}}
                 >
                     <p style="font-weight:bold;margin: 10px 0 10px 0;">{reply.author._id}</p>
-                    <p style="margin: 10px 0 10px 0;">{reply.p}</p>
+                    <p style="margin: 10px 0 10px 0;">{reply.p ? reply.p : reply.attachments ? "Attachment" : "" }</p>
                 </div>
             {/each}
         </div>
