@@ -569,6 +569,7 @@
 							{post}
 							{adminView}
 							error={postErrors[post.id]}
+                            input={postInput}
 							retryPost={() => {
 								sendPost(post.content);
 								items = items.filter(v => v.id !== post.id);
