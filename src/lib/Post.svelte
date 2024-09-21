@@ -320,7 +320,10 @@
 		adminRestoreButton.disabled = false;
 	}
 
+    let isDark = false;
+
 	onMount(async () => {
+        isDark = document.getElementById("main").classList.contains("mode-dark");
 		initPostUser();
 	});
 
@@ -333,7 +336,6 @@
 
     const roarer = /@([\w-]+)\s+"([^"]*)"\s+\(([^)]+)\)/g;
     const bettermeower = /@([\w-]+)\[([a-zA-Z0-9]+)\]/g;
-
 
     let matches1 = [...post.content.matchAll(roarer)];
     let matches2 = [...post.content.matchAll(bettermeower)];
@@ -709,9 +711,9 @@
             {#each post.reply_to as reply}
                 <div
                     class="custom reply-container"
-                    style:--reply-accent={darkenColour(reply.author.avatar_color, 3)}
-                    style:--reply-border={lightenColour(reply.author.avatar_color, 3)}
-                    style:--reply-color={lightenColour(reply.author.avatar_color, 1.5)}
+                    style:--reply-accent={isDark ? darkenColour(reply.author.avatar_color, 3) : lightenColour(reply.author.avatar_color, 2)}
+                    style:--reply-border={isDark ? lightenColour(reply.author.avatar_color, 3) : reply.author.avatar_color}
+                    style:--reply-color={isDark ? lightenColour(reply.author.avatar_color, 1.5) : darkenColour(reply.author.avatar_color, 2)}
                     on:click={()=>{gotoRepliedToPost(reply._id)}}
                 >
                     <p style="font-weight:bold;margin: 10px 0 10px 0;">{reply.author._id}</p>
@@ -858,8 +860,8 @@
 
     .reply-container {
         font-size: 16px;
-        background-color: #25242e;
-        border: 3px solid #25242e;
+        background-color: var(--accent-down);
+        border: 3px solid var(--accent-down);
         padding-left: 10px;
         padding-right: 10px;
         border-radius: 6px;
