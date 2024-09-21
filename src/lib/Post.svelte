@@ -38,12 +38,12 @@
 		content: ""
 	};
 	export let buttons = true;
-	export let input = null;
 	export let adminView = false;
 	export let error = "";
 	export let retryPost;
 	export let removePost;
     export let gotoRepliedToPost;
+    export let replyPost;
 
 	let bridged = false;
 	let webhook = false;
@@ -451,43 +451,7 @@
 						{/if}
 						<button
 							class="circle reply"
-							on:click={() => {
-								let existingText = input.value.trim();
-
-								const mentionRegex = /^@\w+\s*/i;
-								const mention = "@" + post.user + " ";
-
-								if (mentionRegex.test(existingText)) {
-									existingText = existingText
-										.trim()
-										.replace(mentionRegex, mention);
-								} else {
-									existingText = mention + existingText.trim();
-								}
-								existingText += "\n";
-								let snipped = false;
-								/* @type {string[]} */
-								let iter = post.content.split("\n");
-
-
-								iter.forEach(element => {
-
-									if (element.replaceAll(/\s/g, '').startsWith(">")) {
-										if (!snipped) {
-											snipped = true;
-											existingText += "> > [snip]\n";
-											return;
-										}
-										return;
-									}
-									snipped = false;
-									existingText += "> " + element + "\n";
-								});
-								existingText += "\n";
-								input.value = existingText;
-
-								input.focus();
-							}}
+							on:click={() => {replyPost(post.post_id)}}
 						/>
 						{#if post.user === $user.name || (post.post_origin === $chat._id && $chat.owner === $user.name)}
 							{#if !bridged}
@@ -499,8 +463,7 @@
 											deleteButton.disabled = true;
 											try {
 												const resp = await fetch(
-													`${apiUrl}posts?id=${post.post_id}`,
-													{
+													`${apiUrl}posts?id=${post.post_id}`										{
 														method: "DELETE",
 														headers: $authHeader,
 													}
