@@ -326,6 +326,17 @@
 			});
         }
     }
+
+    let replies = [];
+
+    async function handleReplyPost(_id) {
+        let replyingPost = await fetch(`https://api.meower.org/posts?id=${replyid}`, {
+            headers: { token: $authHeader.token }
+        });
+        replyingPost = replyingPost.status === "404" ? { p: "[original message was deleted]" } : await replyingPost.json();
+        replies = [...replies,replyingPost];
+        postInput.focus();
+    }
 </script>
 
 <div>
@@ -462,6 +473,21 @@
 			{/if}
 		</form>
 	{/if}
+    {#each replies as reply}
+        <div class="replyto-container">
+            <div
+                class="custom reply-container"
+                style:--reply-accent={reply ? (isDark ? darkenColour(reply.author.avatar_color, 3) : lightenColour(reply.author.avatar_color, 2)) : ""}
+                style:--reply-border={reply ? (isDark ? lightenColour(reply.author.avatar_color, 3) : "#" + reply.author.avatar_color) : ""}
+                style:--reply-color={reply ? (isDark ? lightenColour(reply.author.avatar_color, 1.5) : darkenColour(reply.author.avatar_color, 2)) : ""}
+                on:click={()=>{gotoRepliedToPost(reply._id)}}
+            >
+                <p style="font-weight:bold;margin: 10px 0 10px 0;">{reply ? reply.author._id || ""}</p>
+                <p style="margin: 10px 0 10px 0;">{reply ? (reply.p ? reply.p : reply.attachments ? "Attachment" : "") : "[original message was deleted]"}</p>
+            </div>
+            <button on:click={()=>{}}>x</button>
+        </div>
+    {/each}
 	{#if postOrigin}
 		<TypingIndicator forPage={postOrigin} />
 	{/if}
@@ -542,7 +568,6 @@
 						<Post
 							{post}
 							{adminView}
-							input={postInput}
 							error={postErrors[post.id]}
 							retryPost={() => {
 								sendPost(post.content);
@@ -551,6 +576,7 @@
 							removePost={() =>
 								(items = items.filter(v => v.id !== post.id))}
                             gotoRepliedToPost={handleReplyLink}
+                            replyPost={handleReplyPost}
 						/>
 					{/if}
 				</div>
@@ -611,4 +637,37 @@
 		margin: 0;
 		margin-left: 0.125em;
 	}
+
+    .replyto-container {
+        width: 100%;
+		margin-bottom: 0.5em;
+        display: flex;
+        gap: 0.8rem;
+    }
+
+    .reply-container.custom {
+        background-color: var(--reply-accent);
+        border: 3px solid var(--reply-border);
+        color: var(--reply-color);
+    }
+
+    .reply-container {
+        font-size: 16px;
+        background-color: var(--accent-down);
+        border: 3px solid var(--accent-down);
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 6px;
+        max-height: 100px;
+        overflow-x: auto;
+        overflow-y: visible;
+        margin: 10px 0;
+        display: flex;
+        text-wrap: nowrap;
+        gap: 10px;
+        align-items: center;
+        height: 42px;
+        white-space: nowrap;
+        overflow: hidden;
+    }
 </style>
