@@ -339,7 +339,7 @@
     let matches2 = [...post.content.matchAll(bettermeower)];
 
     let allMatches = matches1.concat(matches2);
-    const postsreplied = [];
+    let postsreplied = [];
 
     if (allMatches.length > 0) {
         const replyIds = allMatches.map(match => match[3] || match[2]);
@@ -373,9 +373,9 @@
             }
 
             user = replydata.u || '';
-            postsreplied.push({_id: replydata._id || "", p: content, author: {_id: user}});
+            postsreplied = [...postsreplied, {_id: replydata._id || "", p: content, author: {_id: user}}];
 	    });
-        console.log(postsreplied);
+       
         allMatches.forEach(match => {
             post.content = post.content.replace(match[0], '').trim();
         });
