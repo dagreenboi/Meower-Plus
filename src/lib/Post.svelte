@@ -377,6 +377,10 @@
             user = replydata.u || '';
             postsreplied.push({_id: replydata._id || "", p: content, author: {_id: user}});
 	    });
+        console.log(postsreplied);
+        allMatches.forEach(match => {
+            post.content = post.content.replace(match[0], '').trim();
+        });
     }
 </script>
 
