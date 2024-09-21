@@ -679,7 +679,7 @@
                     style:--reply-color={reply ? (isDark ? lightenColour(reply.author.avatar_color, 1.5) : darkenColour(reply.author.avatar_color, 2)) : ""}
                     on:click={()=>{gotoRepliedToPost(reply._id)}}
                 >
-                    <p style="font-weight:bold;margin: 10px 0 10px 0;">{reply ? reply.author._id || ""}</p>
+                    <p style="font-weight:bold;margin: 10px 0 10px 0;">{reply ? reply.author._id : ""}</p>
                     <p style="margin: 10px 0 10px 0;">{reply ? (reply.p ? reply.p : reply.attachments ? "Attachment" : "") : "[original message was deleted]"}</p>
                 </div>
             {/each}
