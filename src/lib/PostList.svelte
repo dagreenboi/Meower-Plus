@@ -249,7 +249,10 @@
 		});
 	}
 
+    let isDark = false;
+
 	onMount(() => {
+        isDark = document.getElementById("main").classList.contains("mode-dark");
 		if (postOrigin) {
 			const evId = clm.link.on("direct", cmd => {
 				if (!cmd.val) return;
