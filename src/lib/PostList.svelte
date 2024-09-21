@@ -44,6 +44,7 @@
 	import ProfileView from "./ProfileView.svelte";
 	import * as clm from "./clmanager.js";
 	import {apiUrl, encodeApiURLParams} from "./urls.js";
+    import { darkenColour, lightenColour } from "./color.js";
 
 	import {createEventDispatcher} from "svelte";
 	const dispatch = createEventDispatcher();
