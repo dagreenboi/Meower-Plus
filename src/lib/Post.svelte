@@ -344,7 +344,7 @@
     if (allMatches.length > 0) {
         const replyIds = allMatches.map(match => match[3] || match[2]);
         const roarRegex = /^@[\w-]+ (.+?) \(([^)]+)\)/;
-        replyIds.forEach(async id => {
+        replyIds.forEach(async replyid => {
             let replydata;
             const replyresp = await fetch(`https://api.meower.org/posts?id=${replyid}`, {
                 headers: { token: $authHeader.token }
