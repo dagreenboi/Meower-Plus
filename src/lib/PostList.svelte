@@ -335,7 +335,7 @@
     let replyids = [];
 
     async function handleReplyPost(_id) {
-        if (!replyids.includes(_id) {
+        if (!replyids.includes(_id)) {
             let replyingPost = await fetch(`https://api.meower.org/posts?id=${_id}`, {
                 headers: { token: $authHeader.token }
             });
