@@ -9,7 +9,7 @@ export let fallback = {
 	foreground: "#000000",
 	foregroundOrange: "#ffffff",
 	tinting: "#252525",
-	accentdown: "#25242e"
+	accentDown: "#25242e"
 };
 
 import {useCustomTheme, customTheme as currentCustomTheme} from "./stores.js";
@@ -29,7 +29,7 @@ export function stringToTheme(string) {
 			foregroundOrange:
 				json.foregroundOrange || fallback.foregroundOrange,
 			tinting: json.tinting || fallback.tinting,
-			accentdown: json.accentdown || fallback.accentdown
+			accentDown: json.accentDown || fallback.accentDown
 		};
 	} catch (e) {
 		console.error("Error loading custom theme: " + e);
@@ -93,9 +93,9 @@ export function applyTheme(theme) {
 		throw new Error(
 			"required field 'tinting' is not defined or is null"
 		);
-	if (!theme.accentdown)
+	if (!theme.accentDown)
 		throw new Error(
-			"required field 'accentdown' is not defined or is null"
+			"required field 'accentDown' is not defined or is null"
 		);
 
 	if (![1].includes(theme.v))
