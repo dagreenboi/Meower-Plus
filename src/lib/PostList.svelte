@@ -212,7 +212,7 @@
 			date: Math.floor(new Date().getTime() / 1000),
 			isDeleted: false,
 			pending: true,
-            reply_to: []
+            reply_to: replyids
 		};
 		list.addItem(pendingPost);
 
