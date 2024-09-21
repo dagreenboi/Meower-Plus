@@ -215,8 +215,6 @@
             reply_to: replies
 		};
 		list.addItem(pendingPost);
-        replyids = [];
-        replies = [];
 
 		const postProm = new Promise(async (resolve, reject) => {
 			try {
@@ -238,6 +236,8 @@
 					}
 				);
 				const json = await resp.json();
+                replyids = [];
+                replies = [];
 
 				if (resp.ok) {
 					resolve();
