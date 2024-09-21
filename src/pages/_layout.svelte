@@ -59,7 +59,7 @@
 		? $customTheme.foregroundOrange
 		: null}
     style:--accent-down={$useCustomTheme
-        ? $customTheme.accentdown
+        ? $customTheme.accentDown
         : null}
 	class:theme-orange={$user.theme === "orange"}
 	class:theme-blue={$user.theme === "blue"}
