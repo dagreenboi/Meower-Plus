@@ -1,4 +1,4 @@
-a<script>
+<script>
 	import Modal from "../../Modal.svelte";
 
 	import {user, customTheme} from "../../stores.js";
