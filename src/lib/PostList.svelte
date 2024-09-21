@@ -332,14 +332,18 @@
     }
 
     let replies = [];
+    let replyids = [];
 
     async function handleReplyPost(_id) {
-        let replyingPost = await fetch(`https://api.meower.org/posts?id=${_id}`, {
-            headers: { token: $authHeader.token }
-        });
-        replyingPost = replyingPost.status === "404" ? { p: "[original message was deleted]" } : await replyingPost.json();
-        replies = [...replies,replyingPost];
-        postInput.focus();
+        if (!replyids.includes(_id) {
+            let replyingPost = await fetch(`https://api.meower.org/posts?id=${_id}`, {
+                headers: { token: $authHeader.token }
+            });
+            replyingPost = replyingPost.status === "404" ? { p: "[original message was deleted]" } : await replyingPost.json();
+            replies = [...replies,replyingPost];
+            replyids = [...replyids,_id];
+            postInput.focus();
+        }
     }
 </script>
 
@@ -489,7 +493,11 @@
                 <p style="font-weight:bold;margin: 10px 0 10px 0;">{reply ? reply.author._id : ""}</p>
                 <p style="margin: 10px 0 10px 0;">{reply ? (reply.p ? reply.p : reply.attachments ? "Attachment" : "") : "[original message was deleted]"}</p>
             </div>
-            <button on:click={()=>{}}>x</button>
+            <button class="circle close" on:click={()=>{
+                const replyidx = replyids.indexOf(reply._id);
+                replyids = [...replyids.slice(0,replyidx), ...replyids.slice(replyidx + 1)];
+                replies = [...replies.slice(0,replyidx), ...replies.slice(replyidx + 1)];
+			}}></button>
         </div>
     {/each}
 	{#if postOrigin}
@@ -645,9 +653,12 @@
 
     .replyto-container {
         width: 100%;
-		margin-bottom: 0.5em;
+        margin-bottom: .5em;
         display: flex;
-        gap: 0.8rem;
+        gap: .8rem;
+        height: 48px;
+        align-items: center;
+        flex-direction: row;
     }
 
     .reply-container.custom {
@@ -674,5 +685,6 @@
         height: 42px;
         white-space: nowrap;
         overflow: hidden;
+        width: 80%;
     }
 </style>
