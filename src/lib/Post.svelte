@@ -40,6 +40,7 @@
 	export let buttons = true;
 	export let adminView = false;
 	export let error = "";
+    export let input = null;
 	export let retryPost;
 	export let removePost;
     export let gotoRepliedToPost;
