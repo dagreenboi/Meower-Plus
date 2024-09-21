@@ -463,7 +463,7 @@
 											deleteButton.disabled = true;
 											try {
 												const resp = await fetch(
-													`${apiUrl}posts?id=${post.post_id}`,{								{
+													`${apiUrl}posts?id=${post.post_id}`, {
 														method: "DELETE",
 														headers: $authHeader,
 													}
