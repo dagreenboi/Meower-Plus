@@ -35,7 +35,7 @@
 	<img src={logo} alt="Meower" height="80" />
 </h1>
 <b class="center friendlier">The friendlier social media for everyone.</b>
-<div class="center">Meower Plus Client, version {version}</div>
+<div class="center">Meower+ Client, version {version}</div>
 <div class="center links">
 	<a href="https://meower.org" target="_blank" rel="noreferrer">Learn more</a>
 	|
@@ -47,11 +47,11 @@
 </div>
 
 <Container>
-	<h2>Meower Plus Contributors</h2>
-	<p>These people are Cuntributors to the Meower Plus Client.</p>
+	<h2>Meower+ Contributors</h2>
+	<p>These people are Cuntributors to the Meower+ Client.</p>
 	<div class="contributors-list">
 		<Contributor username="DaGreenBoi" pfp={26} isMeower={true}>
-			Creator of Meower Plus
+			Creator of Meower+
 		</Contributor>
 	</div>
 </Container>
@@ -98,10 +98,18 @@
 <Container>
 	<h2>Changelog</h2>
 	<Container>
+		<h2>0.2</h2>
+		<ul>
+            <li>Changed Replies to be Server-Side.</li>
+            <li>Made Replies from Roarer display.</li>
+        </ul>
+	</Container>
+	<Container>
 		<h2>0.1</h2>
 		<ul>
             <li>Added the ability to change your Profile Picture to any image.</li>
             <li>Added Profile Picture borders</li>
+            <li>Changed Inbox a bit</li>
             <li>Updated the About page</li>
         </ul>
 	</Container>
