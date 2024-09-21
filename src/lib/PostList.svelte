@@ -330,7 +330,7 @@
     let replies = [];
 
     async function handleReplyPost(_id) {
-        let replyingPost = await fetch(`https://api.meower.org/posts?id=${replyid}`, {
+        let replyingPost = await fetch(`https://api.meower.org/posts?id=${_id}`, {
             headers: { token: $authHeader.token }
         });
         replyingPost = replyingPost.status === "404" ? { p: "[original message was deleted]" } : await replyingPost.json();
