@@ -102,6 +102,7 @@
 		<ul>
             <li>Changed Replies to be Server-Side.</li>
             <li>Made Replies from Roarer display.</li>
+            <li>Added a new value to Custom Themes.</li>
         </ul>
 	</Container>
 	<Container>
