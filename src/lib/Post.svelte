@@ -345,16 +345,14 @@
         const replyIds = allMatches.map(match => match[3] || match[2]);
         const roarRegex = /^@[\w-]+ (.+?) \(([^)]+)\)/;
         replyIds.forEach(async id => {
-            let replydata = postCache[postOrigin].find(post => post._id === replyid);
-            if (!replydata) {
-                const replyresp = await fetch(`https://api.meower.org/posts?id=${replyid}`, {
-                    headers: { token: localStorage.getItem("token") }
-                });
-                if (replyresp.status === 404) {
-                    replydata = { p: "[original message was deleted]" };
-                } else {
-                    replydata = await replyresp.json();
-                }
+            let replydata;
+            const replyresp = await fetch(`https://api.meower.org/posts?id=${replyid}`, {
+                headers: { token: $authHeader.token }
+            });
+            if (replyresp.status === 404) {
+                replydata = { p: "[original message was deleted]" };
+            } else {
+                replydata = await replyresp.json();
             }
 
             let content;
