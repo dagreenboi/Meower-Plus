@@ -212,9 +212,11 @@
 			date: Math.floor(new Date().getTime() / 1000),
 			isDeleted: false,
 			pending: true,
-            reply_to: replyids
+            reply_to: replies
 		};
 		list.addItem(pendingPost);
+        replyids = [];
+        replies = [];
 
 		const postProm = new Promise(async (resolve, reject) => {
 			try {
@@ -231,6 +233,7 @@
 						body: JSON.stringify({
 							content,
 							nonce: pendingPost.nonce,
+                            reply_to: replyids
 						}),
 					}
 				);
@@ -485,12 +488,12 @@
         <div class="replyto-container">
             <div
                 class="custom reply-container"
-                style:--reply-accent={reply ? (isDark ? darkenColour(reply.author.avatar_color, 3) : lightenColour(reply.author.avatar_color, 2)) : ""}
-                style:--reply-border={reply ? (isDark ? lightenColour(reply.author.avatar_color, 3) : "#" + reply.author.avatar_color) : ""}
-                style:--reply-color={reply ? (isDark ? lightenColour(reply.author.avatar_color, 1.5) : darkenColour(reply.author.avatar_color, 2)) : ""}
+                style:--reply-accent={(reply || {}).author ? (isDark ? darkenColour(reply.author.avatar_color, 3) : lightenColour(reply.author.avatar_color, 2)) : ""}
+                style:--reply-border={(reply || {}).author ? (isDark ? lightenColour(reply.author.avatar_color, 3) : "#" + reply.author.avatar_color) : ""}
+                style:--reply-color={(reply || {}).author ? (isDark ? lightenColour(reply.author.avatar_color, 1.5) : darkenColour(reply.author.avatar_color, 2)) : ""}
                 on:click={()=>{gotoRepliedToPost(reply._id)}}
             >
-                <p style="font-weight:bold;margin: 10px 0 10px 0;">{reply ? reply.author._id : ""}</p>
+                <p style="font-weight:bold;margin: 10px 0 10px 0;">{(reply || {}).author ? reply.author._id : ""}</p>
                 <p style="margin: 10px 0 10px 0;">{reply ? (reply.p ? reply.p : reply.attachments ? "Attachment" : "") : "[original message was deleted]"}</p>
             </div>
             <button class="circle close" on:click={()=>{
