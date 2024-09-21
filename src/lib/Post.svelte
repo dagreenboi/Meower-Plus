@@ -675,12 +675,12 @@
             {#each post.reply_to as reply}
                 <div
                     class="custom reply-container"
-                    style:--reply-accent={reply ? (isDark ? darkenColour(reply.author.avatar_color, 3) : lightenColour(reply.author.avatar_color, 2)) : ""}
-                    style:--reply-border={reply ? (isDark ? lightenColour(reply.author.avatar_color, 3) : "#" + reply.author.avatar_color) : ""}
-                    style:--reply-color={reply ? (isDark ? lightenColour(reply.author.avatar_color, 1.5) : darkenColour(reply.author.avatar_color, 2)) : ""}
+                    style:--reply-accent={(reply || {}).author ? (isDark ? darkenColour(reply.author.avatar_color, 3) : lightenColour(reply.author.avatar_color, 2)) : ""}
+                    style:--reply-border={(reply || {}).author ? (isDark ? lightenColour(reply.author.avatar_color, 3) : "#" + reply.author.avatar_color) : ""}
+                    style:--reply-color={(reply || {}).author ? (isDark ? lightenColour(reply.author.avatar_color, 1.5) : darkenColour(reply.author.avatar_color, 2)) : ""}
                     on:click={()=>{gotoRepliedToPost(reply._id)}}
                 >
-                    <p style="font-weight:bold;margin: 10px 0 10px 0;">{reply ? reply.author._id : ""}</p>
+                    <p style="font-weight:bold;margin: 10px 0 10px 0;">{(reply || {}).author ? reply.author._id : ""}</p>
                     <p style="margin: 10px 0 10px 0;">{reply ? (reply.p ? reply.p : reply.attachments ? "Attachment" : "") : "[original message was deleted]"}</p>
                 </div>
             {/each}
