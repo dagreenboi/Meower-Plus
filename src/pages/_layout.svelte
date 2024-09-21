@@ -58,6 +58,9 @@
 	style:--foreground-orange={$useCustomTheme
 		? $customTheme.foregroundOrange
 		: null}
+    style:--accent-down={$useCustomTheme
+        ? $customTheme.accentdown
+        : null}
 	class:theme-orange={$user.theme === "orange"}
 	class:theme-blue={$user.theme === "blue"}
 	class:mode-light={!($user.mode === false)}
@@ -142,9 +145,7 @@
 		--background: white;
 		--foreground: black;
 		--foreground-orange: white;
-
-		--pfp-bg: white;
-		--pfp-outline: #d9d9d9;
+        --accent-down: #c8c8c8;
 
 		color: var(--foreground);
 		scrollbar-color: var(--orange) var(--orange-scrollbar-back);
@@ -159,6 +160,7 @@
 		--background: #181818;
 		--foreground: #eef;
 		--foreground-orange: #eef;
+        --accent-down: #25242e;
 	}
 	#main.theme-blue {
 		/*--orange: #aa0000;
@@ -176,12 +178,14 @@
 		--background: white;
 		--foreground: black;
 		--foreground-orange: white;
+        --accent-down: #c8c8c8;
 		scrollbar-color: unset;
 	}
 	#main.theme-blue.mode-dark {
 		--background: #181818;
 		--foreground: white;
 		--foreground-orange: white;
+        --accent-down: #25242e;
 	}
 
 	.main-screen {
