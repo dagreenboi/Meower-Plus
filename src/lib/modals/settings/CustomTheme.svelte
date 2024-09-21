@@ -62,7 +62,7 @@ a<script>
 		<input type="color" id="Fg2" bind:value={theme.foregroundOrange} />
 		<br />
 		<label for="AcDo">Accent Down: </label>
-		<input type="color" id="AcDo" bind:value={theme.accentdown} />
+		<input type="color" id="AcDo" bind:value={theme.accentDown} />
 		<br /><br />
 		<button on:click={() => (theme = fallback)}>Reset </button>
 		<br /><br />
