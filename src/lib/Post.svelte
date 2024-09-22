@@ -187,6 +187,7 @@
             meowerEmojis.forEach(element => {
                 emojiContent = emojiContent.split(element).join(`![Emoji](https://uploads.meower.org/emojis/${element[0]})`);
 			});
+            console.log(meowerEmojis, emojiContent)
 
 
 			const tokens = md.parse(
