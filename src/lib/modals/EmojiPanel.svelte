@@ -17,7 +17,7 @@
             {#if chat.owner}
                 <h3>{chat.nickname}</h3>
                 <div class="emoji-panel">
-                    {#each chat.emojis as emoji
+                    {#each chat.emojis as emoji}
                         <button class="emoji-button" on:click={()=>{
                              postInput.value = postInput.value + `<:${emoji._id}> `;
                              postInput.focus();
