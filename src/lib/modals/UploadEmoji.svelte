@@ -1,9 +1,9 @@
 <script>
-	import Modal from "../../Modal.svelte";
+	import Modal from "../Modal.svelte";
 
-	import {authHeader, chats} from "../../stores.js";
-	import {apiUrl} from "../../urls.js";
-	import * as modals from "../../modals.js";
+	import {authHeader, chats} from "../stores.js";
+	import {apiUrl} from "../urls.js";
+	import * as modals from "../modals.js";
 
 	import {goto, focus} from "@roxi/routify";
 
