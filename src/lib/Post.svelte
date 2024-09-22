@@ -140,7 +140,7 @@
 	window.confirmLink = confirmLink;
 
 	function createEmote(original, id, isGif, size) {
-		return `​![${original}](https://cdn.discordapp.com/emojis/${id}.${isGif ? "gif" : "webp"}?size=32&quality=lossless)`
+		return `​![${original}](https://cdn.discordapp.com/emojis/${id}.${isGif ? "gif" : "webp"}?size=32&quality=lossless):(emoji)`
 	}
 
 	/**
@@ -185,7 +185,7 @@
             var emojiContent = emoteContent;
             const meowerEmojis = Array.from(content.matchAll(/<:(\w+)>/g))
             meowerEmojis.forEach(element => {
-                emojiContent = emojiContent.replaceAll(element[0],`![Emoji](https://uploads.meower.org/emojis/${element[1]})`);
+                emojiContent = emojiContent.replace(element[0],`![Emoji](https://uploads.meower.org/emojis/${element[1]}):(emoji)`);
 			});
 
 
@@ -233,6 +233,11 @@
 			renderedContent = renderedContent.replaceAll(
 				/<blockquote>(.+?)<\/blockquote>/gms,
 				'<blockquote><p>$1</p></blockquote>'
+			);
+            // make emoji have class
+            renderedContent = renderedContent.replaceAll(
+				/<img src="(.+?)" alt="(.+?)">:\(emoji\)/gms,
+				'<img src="$1" alt="$2" class="emoji">'
 			);
 
 			if ($user.embeds_enabled) {
@@ -845,4 +850,11 @@
         white-space: nowrap;
         overflow: hidden;
     }
+
+    :global(.emoji) {
+        height: 1lh;
+        aspect-ratio: 1 / 1;
+        object-fit: contain;
+        vertical-align: bottom;
+	}
 </style>
