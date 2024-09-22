@@ -10,7 +10,7 @@
 	<h2 slot="header">Emojis</h2>
 	<div slot="default">
     <h3>E</h3>
-    <button class="emoji-button">
+    <button class="emoji-button" on:click={modals.closelastmodal}>
       <img src="https://uploads.meower.org/emojis/TRxWqE2g9Wb7pljLBGEH63pj" class="emoji-image" />
     </button>
 	</div>
