@@ -14,16 +14,20 @@
 	<h2 slot="header">Emojis</h2>
 	<div slot="default">
         {#each Chats as chat}
-            <h3>{chat.nickname}</h3>
-            <div class="emoji-panel">
-                {#each chat.emojis as emojj}
-                    <button class="emoji-button" on:click={()=>{
-                         postInput.value = postInput.value + `<:${emoji._id}> `;
-                         postInput.focus();
-                         modals.closeLastModal();
-                	}}></button>
-               {/each}
-           </div>
+            {#if chat.owner}
+                <h3>{chat.nickname}</h3>
+                <div class="emoji-panel">
+                    {#each chat.emojis as emoji
+                        <button class="emoji-button" on:click={()=>{
+                             postInput.value = postInput.value + `<:${emoji._id}> `;
+                             postInput.focus();
+                             modals.closeLastModal();
+                    	}}>
+                            <img src={"https://uploads.meower.org/emojis/" + emoji._id} class="emoji-image" alt={emoji.name} />
+                        </button>
+                   {/each}
+               </div>
+            {/if}
         {/each}
 	</div>
 </Modal>
