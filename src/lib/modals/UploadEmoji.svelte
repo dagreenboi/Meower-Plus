@@ -68,7 +68,9 @@ const apiResp = await fetch(`https://api.meower.org/chats/${$chat._id}/emojis/${
         },
         body: JSON.stringify({ name }),
     });
-
+const cidx = $chats.indexOf($chat);
+$chat.emojis = [...$chat.emojis,{_id: emojiId, name, animated: img.name.endsWith(".gif")];
+$chats[cidx] = $chat; 
 
                 modals.closeLastModal();
             }} disabled={!(name && img)|| loading}
