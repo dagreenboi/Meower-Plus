@@ -10,11 +10,10 @@
 </script>
 
 <Modal on:close={modals.closeLastModal}>
-	<h2 slot="header">Emojis</h2>
+	<h2 slot="header"></h2>
 	<div slot="default">
         {#each $chats as c}
-            {#if c.owner}
-                <hr>
+            {#if c.owner && ((c.emojis.length || []) > 0 || c.owner === $authHeader.username)}
                 <h3>{c.nickname}</h3>
                 <div class="emoji-panel">
                     {#each c.emojis as emoji}
@@ -33,6 +32,7 @@
                         </button>
                    {/if}
                </div>
+               <hr>
             {/if}
         {/each}
 	</div>
