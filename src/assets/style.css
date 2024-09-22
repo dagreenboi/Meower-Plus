@@ -1,3 +1,6 @@
+
+
+
 /*
 	Common CSS (CSS thats used all around meower)
 	(And the nojs screen is here too)
@@ -367,7 +370,7 @@ button.reload {
 	background-size: 70%;
 }
 
-button.emoji {
+button.face {
 	background-image: url("./emoji.svg");
 	background-size: 50%;
 }
