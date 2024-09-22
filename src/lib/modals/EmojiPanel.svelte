@@ -7,13 +7,13 @@
 
     export let modalData;
     const postInput = modalData;
-    console.log($chats);
+    const Chats = $chats;
 </script>
 
 <Modal on:close={modals.closeLastModal}>
 	<h2 slot="header">Emojis</h2>
 	<div slot="default">
-        {#each $chats as chat}
+        {#each Chats as chat}
             <h3>{chat.nickname}</h3>
             <div class="emoji-panel">
                 {#each chat.emojis as emojj}
