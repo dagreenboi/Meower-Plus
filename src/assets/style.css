@@ -367,6 +367,12 @@ button.reload {
 	background-size: 70%;
 }
 
+button.emoji {
+	background-image: url("./emoji.svg");
+	background-size: 50%;
+}
+
+
 main.input-hover input[type="checkbox"]:hover:not(:active),
 main.input-hover button.circle:not(:disabled):hover:not(:active),
 main.input-touch input[type="checkbox"]:active,
