@@ -25,6 +25,7 @@
                     </button>
                {/each}
            </div>
+        {/each}
 	</div>
 </Modal>
 
