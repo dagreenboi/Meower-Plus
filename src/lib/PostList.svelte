@@ -409,6 +409,14 @@
 				input.style.height = "45px";
 			}}
 		>
+            {#if (!userRestricted) && (!recipientBlocked)}
+				<button
+					class="emoji-panel-button face"
+					title="Open Emoji Panel"
+					on:click|preventDefault={() => {
+					}}></button
+				>
+            {/if}
 			<textarea
 				type="text"
 				class="white"
@@ -689,5 +697,11 @@
         white-space: nowrap;
         overflow: hidden;
         width: 80%;
+    }
+
+    .emoji-panel-button {
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 15pt;
     }
 </style>
