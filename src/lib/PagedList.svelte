@@ -40,9 +40,9 @@
 	 * @param {*} item
 	 */
 	export const addItem = function (item) {
-		id++;
+		pid++;
 		items.unshift({
-			id,
+			pid,
 			...item,
 		});
 
