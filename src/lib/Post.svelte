@@ -850,11 +850,4 @@
         white-space: nowrap;
         overflow: hidden;
     }
-
-    :global(.emoji) {
-        height: 1lh;
-        aspect-ratio: 1 / 1;
-        object-fit: contain;
-        vertical-align: bottom;
-	}
 </style>
