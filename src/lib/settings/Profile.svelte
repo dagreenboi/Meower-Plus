@@ -94,7 +94,7 @@
 			>
                 Choose File
             </button>
-            <input type=file hidden bind:this={pfpElement} on:change={onPfpChange} />
+            <input type=file hidden bind:this={pfpElement} on:change={onPfpChange} accept="image/png,image/jpeg,image/webp,image/gif" />
             <h3>Profile Color</h3>
             <button
 				class="long"
