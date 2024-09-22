@@ -21,13 +21,6 @@
 <Modal on:close={modals.closeLastModal}>
 	<h2 slot="header">Upload Emoji</h2>
 	<div slot="default">
-		<form
-			on:change={() => (error = "")}
-			on:submit|preventDefault={async () => {
-				loading = true;
-                modals.closeLastModal();
-            }}
-		>
 			<input
 				id="nickname"
 				type="text"
@@ -53,7 +46,10 @@
 					disabled={loading}
 					on:click={modals.closeLastModal}>Cancel</button
 				>
-        <button type="submit" disabled={!(name && img)|| loading}
+        <button on:click={async () => {
+				loading = true;
+                modals.closeLastModal();
+            }} disabled={!(name && img)|| loading}
 					>Create</button
 				>
 			</div>
