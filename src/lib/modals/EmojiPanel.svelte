@@ -21,9 +21,7 @@
                          postInput.value = postInput.value + `<:${emoji._id}> `;
                          postInput.focus();
                          modals.closeLastModal();
-                	}}>
-                        <img src={"https://uploads.meower.org/emojis/" + emoji._id} class="emoji-image" alt={emoji.name} />
-                    </button>
+                	}}></button>
                {/each}
            </div>
         {/each}
