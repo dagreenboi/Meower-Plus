@@ -98,6 +98,12 @@
 <Container>
 	<h2>Changelog</h2>
 	<Container>
+		<h2>0.3</h2>
+		<ul>
+            <li>Added Emojis to Chats.</li>
+        </ul>
+	</Container>
+	<Container>
 		<h2>0.2</h2>
 		<ul>
             <li>Changed Replies to be Server-Side.</li>
