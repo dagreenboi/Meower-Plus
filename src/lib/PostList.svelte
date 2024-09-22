@@ -325,9 +325,9 @@
         if (postElement) {
             const postRect = postElement.getBoundingClientRect();
             const containerRect = document.getElementById("posts-list").getBoundingClientRect();
-            const postPosition = postRect.top - containerRect.top + document.getElementById("main").scrollTop;
+            const postPosition = postRect.top - containerRect.top + document.scrollingElement.scrollTop;
             console.log(postPosition)
-            document.getElementById("main").scrollTo({
+            document.scrollingElement.scrollTo({
                 top: postPosition,
                 behavior: "smooth"
 			});
