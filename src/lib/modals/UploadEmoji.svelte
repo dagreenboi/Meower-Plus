@@ -1,7 +1,7 @@
 <script>
 	import Modal from "../Modal.svelte";
 
-	import {authHeader, chats} from "../stores.js";
+	import {authHeader, chat} from "../stores.js";
 	import {apiUrl} from "../urls.js";
 	import * as modals from "../modals.js";
 
@@ -14,7 +14,10 @@
 
   function imgChanged() {
     img = imgElement.files[0];
-    name = img.name;
+    let imgname = img.name.split(".");
+    imgname.pop();
+    imgname.join(".");
+    name = imgname;
   }
 </script>
 
@@ -39,7 +42,7 @@
 			>
           Choose File
       </button>
-      <input type=file hidden bind:this={imgElement} on:change={imgChanged} />
+      <input type=file hidden bind:this={imgElement} on:change={imgChanged} accept="image/png,image/jpeg,image/webp,image/gif" />
 			<div class="modal-buttons">
 				<button
 					type="button"
@@ -48,6 +51,25 @@
 				>
         <button on:click={async () => {
 				loading = true;
+
+    const formData = new FormData();
+    formData.append("file", img);
+    const uploadsResp = await fetch("https://uploads.meower.org/emojis", {
+        method: "POST",
+        headers: { Authorization: $authHeader.token },
+        body: formData,
+    });
+    const emojiId = (await uploadsResp.json()).id;
+const apiResp = await fetch(`https://api.meower.org/chats/${$chat._id}/emojis/${emojiId}`, {
+        method: "PUT",
+        headers: {
+            'Content-Type': 'application/json',
+            token: $authHeader.token,
+        },
+        body: JSON.stringify({ name }),
+    });
+
+
                 modals.closeLastModal();
             }} disabled={!(name && img)|| loading}
 					>Create</button				
