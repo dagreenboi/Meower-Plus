@@ -50,10 +50,9 @@
 				loading = true;
                 modals.closeLastModal();
             }} disabled={!(name && img)|| loading}
-					>Create</button
-				>
+					>Create</button				
+        >
 			</div>
-		</form>
 	</div>
 </Modal>
 
