@@ -25,7 +25,8 @@
 			on:change={() => (error = "")}
 			on:submit|preventDefault={async () => {
 				loading = true;
-        modals.closeLastModal();
+                modals.closeLastModal();
+            }}
 		>
 			<input
 				id="nickname"
