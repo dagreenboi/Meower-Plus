@@ -192,7 +192,7 @@
 			const tokens = md.parse(
 				emojiContent
 					.replaceAll(/\[([^\]]+?): (https:\/\/[^\]]+?)\]/gs, "")
-					.replaceAll(/\*\*\*\*/gs, "\\*\\*\\*\\*")
+					.replaceAll(/\*\*\*\*/gs, "\\*\\*\\*\\*"),
 				{}
 			);
 			for (const token of tokens) {
