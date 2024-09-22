@@ -14,6 +14,7 @@
 	<div slot="default">
         {#each $chats as c}
             {#if c.owner}
+                <hr>
                 <h3>{c.nickname}</h3>
                 <div class="emoji-panel">
                     {#each c.emojis as emoji}
@@ -28,7 +29,7 @@
                    {#if c._id === $chat._id && c.owner === $authHeader.username}
                         <button class="emoji-button" on:click={()=>{
                     	}}>
-                            <img src="$assets/add.svg" class="emoji-image" alt="Add Emoji" />
+                            <img src="$lib/../assets/add.svg" class="emoji-image" alt="Add Emoji" />
                         </button>
                    {/if}
                </div>
@@ -40,7 +41,7 @@
 <style>
     .emoji-panel {
         display: grid;
-        grid-template-rows: 1fr 1fr 1fr 1fr 1fr;
+        grid-template-coloumns: 1fr 1fr 1fr 1fr 1fr;
         gap: 0.25em;
     }
 
