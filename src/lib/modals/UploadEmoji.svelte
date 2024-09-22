@@ -1,7 +1,7 @@
 <script>
 	import Modal from "../Modal.svelte";
 
-	import {authHeader, chat} from "../stores.js";
+	import {authHeader, chats, chat} from "../stores.js";
 	import {apiUrl} from "../urls.js";
 	import * as modals from "../modals.js";
 
