@@ -325,9 +325,9 @@
         if (postElement) {
             const postRect = postElement.getBoundingClientRect();
             const containerRect = document.getElementById("posts-list").getBoundingClientRect();
-            const postPosition = postRect.top - containerRect.top + document.getElementById("app").scrollTop;
+            const postPosition = postRect.top - containerRect.top + document.getElementById("main").scrollTop;
             console.log(postPosition)
-            document.getElementById("app").scrollTo({
+            document.getElementById("main").scrollTo({
                 top: postPosition,
                 behavior: "smooth"
 			});
@@ -338,7 +338,7 @@
     let replyids = [];
 
     async function handleReplyPost(_id) {
-        if (!replyids.includes(_id)) {
+        if (!replyids.includes(_id) && replyids.length < 10) {
             let replyingPost = await fetch(`https://api.meower.org/posts?id=${_id}`, {
                 headers: { token: $authHeader.token }
             });
