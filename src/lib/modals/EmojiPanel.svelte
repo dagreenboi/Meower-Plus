@@ -1,5 +1,6 @@
 <script>
 	import Modal from "../Modal.svelte";
+    import UploadEmoji from "./UploadEmoji.svelte";
 
 	import {authHeader, chats, chat} from "../stores.js";
 	import {apiUrl} from "../urls.js";
@@ -27,6 +28,7 @@
                    {/each}
                    {#if c._id === $chat._id && c.owner === $authHeader.username}
                         <button class="emoji-button" on:click={()=>{
+                            modals.showModal(uploadEmoji);
                     	}}>
                             <img src={"data:image/svg+xml,%3csvg%20version='1.1'%20xmlns='http://www.w3.org/2000/svg'%20xmlns:xlink='http://www.w3.org/1999/xlink'%20width='16'%20height='16'%20viewBox='0,0,16,16'%3e%3cg%20transform='translate(-232,-172)'%3e%3cg%20data-paper-data='{&quot;isPaintingLayer&quot;:true}'%20fill='none'%20fill-rule='nonzero'%20stroke='%23ffffff'%20stroke-width='2'%20stroke-linecap='round'%20stroke-linejoin='round'%20stroke-miterlimit='10'%20stroke-dasharray=''%20stroke-dashoffset='0'%20style='mix-blend-mode:%20normal'%3e%3cpath%20d='M240,173v14'/%3e%3cpath%20d='M233,180h14'/%3e%3c/g%3e%3c/g%3e%3c/svg%3e%3c!--rotationCenter:8:8--%3e"} class="emoji-image" alt="Add Emoji" />
                         </button>
