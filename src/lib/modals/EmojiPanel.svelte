@@ -7,6 +7,7 @@
 
     export let modalData;
     const postInput = modalData;
+    console.log($chats);
 </script>
 
 <Modal on:close={modals.closeLastModal}>
