@@ -182,11 +182,18 @@
                 emoteContent = emoteContent.split(element).join(createEmote(element, tok[2], isGif))
             });
 
-
+            var emojiContent = content;
+            const meowerEmojis = Array.from(content.matchAll(/<:(\w+)>/g))
+            meowerEmojis.forEach(element => {
+                emojiContent = emojiContent.split(element).join(`![Emoji](https://uploads.meower.org/emojis/${element[0]})`);
+			});
 
 
 			const tokens = md.parse(
 				emoteContent
+					.replaceAll(/\[([^\]]+?): (https:\/\/[^\]]+?)\]/gs, "")
+					.replaceAll(/\*\*\*\*/gs, "\\*\\*\\*\\*"),
+				emojiContent
 					.replaceAll(/\[([^\]]+?): (https:\/\/[^\]]+?)\]/gs, "")
 					.replaceAll(/\*\*\*\*/gs, "\\*\\*\\*\\*"),
 				{}
