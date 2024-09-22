@@ -707,9 +707,7 @@
     }
 
     .emoji-panel-button {
-        aspect-ratio: 1/1;
-        height: 42.7037px;
-        width: auto;
+        width: 42.7037px;
         display: flex;
         flex-direction: column;
         justify-content: center;
