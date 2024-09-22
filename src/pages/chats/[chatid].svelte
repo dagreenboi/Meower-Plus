@@ -42,6 +42,7 @@
 				created: 0,
 				last_active: 0,
 				deleted: false,
+                emojis: []
 			});
 		} else if ($params.admin) {
 			try {
@@ -114,6 +115,7 @@
 			created: 0,
 			last_active: 0,
 			deleted: false,
+            emojis: []
 		});
 	});
 </script>
