@@ -185,9 +185,8 @@
             var emojiContent = emoteContent;
             const meowerEmojis = Array.from(content.matchAll(/<:(\w+)>/g))
             meowerEmojis.forEach(element => {
-                emojiContent = emojiContent.split(element).join(`![Emoji](https://uploads.meower.org/emojis/${element[0]})`);
+                emojiContent = emojiContent.replaceAll(element[0],`![Emoji](https://uploads.meower.org/emojis/${element[1]})`);
 			});
-            console.log(meowerEmojis, emojiContent)
 
 
 			const tokens = md.parse(
