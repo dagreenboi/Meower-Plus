@@ -158,7 +158,7 @@
                              data={chat}
                              chat=true
                          />
-						<h1>{chat.nickname}</h1>
+						<h1 style="display: inline-block;">{chat.nickname}</h1>
 					</div>
 				</Container>
 			{:else if chat.type === 1}
