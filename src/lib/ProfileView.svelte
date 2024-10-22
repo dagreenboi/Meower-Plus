@@ -251,23 +251,6 @@
 							<LiText text={data._id} />
 						</h1>
 					{/if}
-					<div class="profile-active">
-						{#if $ulist.includes(data._id)}
-							Online
-						{:else if (data.flags & userFlags.SYSTEM) === userFlags.SYSTEM}
-							System
-						{:else if (data.flags & userFlags.DELETED) === userFlags.DELETED}
-							Deleted
-						{:else if data.banned}
-							Banned
-						{:else if data.last_seen}
-							Offline since <FormattedDate
-								date={data.last_seen}
-							/>
-						{:else}
-							Offline
-						{/if}
-					</div>
 				</div>
 			</div>
 		</Container>
