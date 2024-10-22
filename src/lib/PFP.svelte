@@ -10,6 +10,7 @@
     data = data || {};
 
 	import errorIcon from "../assets/avatars/icon_err.svg";
+    import GCIcon from "../assets/GC.svg";
 
 	/**
 	 * @type {*}
@@ -72,7 +73,7 @@
                 ?
                 "https://uploads.meower.org/icons/" + data.icon
                 :
-                "../assets/GC.svg"
+                GCIcon
 			|| errorIcon}
             draggable={false}
 			width="auto"
