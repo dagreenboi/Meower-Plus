@@ -6,6 +6,7 @@
 	export let size = 1;
 	export let raw = false;
     export let data = {};
+    export let chat = false;
     data = data || {};
 
 	import errorIcon from "../assets/avatars/icon_err.svg";
@@ -26,6 +27,7 @@
 	$: setId(icon);
 </script>
 
+{#if !chat}
 <span on:click class:pfp-container={!raw} style:--size={size} style:--avatar-color={data.avatar_color ? "#" + data.avatar_color : "#ffffff"}>
 	<span class:pfp={!raw} class:raw-pfp={raw}>
 		<img 
@@ -58,6 +60,27 @@
 		/>
 	</span>
 </span>
+{:else}
+<span on:click class:pfp-container={!raw} style:--size={size} style:--avatar-color={data.icon_color ? "#" + data.icon_color : "#ffffff"}>
+	<span class:pfp={!raw} class:raw-pfp={raw}>
+		<img 
+            class="pfp-img"
+			{alt}
+			title={alt}
+			src={
+                data.icon
+                ?
+                "https://uploads.meower.org/icons/" + data.icon
+                :
+                "../assets/GC.svg"
+			] || errorIcon}
+            draggable={false}
+			width="auto"
+			height="100%"
+		/>
+	</span>
+</span>
+{/if}
 
 <style>
 	.pfp-container {
