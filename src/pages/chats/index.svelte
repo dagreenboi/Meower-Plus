@@ -14,6 +14,7 @@
 	import AccountBannedModal from "../../lib/modals/safety/AccountBanned.svelte";
 	import CreateChatModal from "../../lib/modals/chats/CreateChat.svelte";
 	import LeaveChatModal from "../../lib/modals/chats/LeaveChat.svelte";
+    imporr PFP from "../../lib/PFP.svelte";
 
 	import {chats, user} from "../../lib/stores.js";
 	import {userRestrictions, isRestricted} from "../../lib/bitField.js";
@@ -151,10 +152,13 @@
 							/>
 						</div>
 
+                        <PFP
+                             alt="{chat.nickname}'s Chat Icon"
+                             size=1
+                             data={chat}
+                             chat=true
+                         />
 						<h1>{chat.nickname}</h1>
-						Members: {chat.members.length > 100
-							? chat.members.slice(0, 99).join(", ") + "..."
-							: chat.members.join(", ")}
 					</div>
 				</Container>
 			{:else if chat.type === 1}
