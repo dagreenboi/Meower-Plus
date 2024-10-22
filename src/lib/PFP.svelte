@@ -73,7 +73,7 @@
                 "https://uploads.meower.org/icons/" + data.icon
                 :
                 "../assets/GC.svg"
-			] || errorIcon}
+			|| errorIcon}
             draggable={false}
 			width="auto"
 			height="100%"
